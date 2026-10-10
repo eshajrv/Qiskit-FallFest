@@ -1,0 +1,40 @@
+Optimal spacetime partitioning not implemented!Just partitioning list of noisy boxes.
+Optimal spacetime partitioning not implemented!Just partitioning list of noisy boxes.
+[reproduce] chain [30, 29, 38, 49, 48, 47, 46, 45, 44, 43, 42, 41, 36, 21, 20]
+[reproduce] 17 boxes, 3 unique layers to learn
+[reproduce] noise learning job id: db5ak64vf2bc73cvkshg  <- save this
+==== run1: 256x128 shots, job db5al9qmb58s738a7sa0
+[reproduce] full PEC gamma^2 = 7.90, shot error ~ 0.0155
+ tolerance  bias bound   gamma^2  shot err  pred total
+     1e-06      0.0000      3.14    0.0098      0.0098
+     1e-03      0.0009      3.09    0.0097      0.0097
+     3e-03      0.0026      3.00    0.0096      0.0099
+     1e-02      0.0099      2.77    0.0092      0.0135
+     2e-02      0.0199      2.56    0.0088      0.0218
+     3e-02      0.0292      2.41    0.0086      0.0305
+     5e-02      0.0499      2.15    0.0081      0.0506
+[reproduce] chosen tolerance 1e-03: gamma^2 = 3.09, predicted total error 0.0097
+[reproduce] executor job id: db5al9qmb58s738a7sa0  <- save this
+[reproduce] <Z6 Z7>   (edge post-selection)
+  raw                                    +0.5450 +/- 0.0046
+  readout only (TREX + post-selection)   +0.5947 +/- 0.0052
+  SLC + TREX + post-selection            +0.6938 +/- 0.0102
+==== run2: 512x256 shots, job db5armklf4us73c3pn20
+[reproduce] full PEC gamma^2 = 7.90, shot error ~ 0.0078
+ tolerance  bias bound   gamma^2  shot err  pred total
+     1e-06      0.0000      3.14    0.0049      0.0049
+     1e-03      0.0009      3.09    0.0049      0.0049
+     3e-03      0.0026      3.00    0.0048      0.0054
+     1e-02      0.0099      2.77    0.0046      0.0109
+     2e-02      0.0199      2.56    0.0044      0.0204
+     3e-02      0.0292      2.41    0.0043      0.0296
+     5e-02      0.0499      2.15    0.0040      0.0501
+[reproduce] chosen tolerance 1e-06: gamma^2 = 3.14, predicted total error 0.0049
+[reproduce] executor job id: db5armklf4us73c3pn20  <- save this
+[reproduce] <Z6 Z7>   (edge post-selection)
+  raw                                    +0.5710 +/- 0.0023
+  readout only (TREX + post-selection)   +0.6199 +/- 0.0025
+  SLC + TREX + post-selection            +0.6749 +/- 0.0052
+run 1 edge SLC: 0.6938 +/- 0.0102
+run 2 edge SLC: 0.6749 +/- 0.0052
+SUBMITTED VALUE (inverse-variance mean): 0.6788 +/- 0.0046   (expected 0.6788 +/- 0.0046)
