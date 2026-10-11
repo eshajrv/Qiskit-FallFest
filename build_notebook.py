@@ -97,19 +97,32 @@ mean, err = (w * v).sum() / w.sum(), 1 / np.sqrt(w.sum())
 print(f"run 1 edge SLC: {v[0]:.4f} +/- {e[0]:.4f}")
 print(f"run 2 edge SLC: {v[1]:.4f} +/- {e[1]:.4f}")
 print(f"\\nSUBMITTED <Z6 Z7> = {mean:.4f} +/- {err:.4f}   (grader score 51.8)")'''),
-new_markdown_cell("""## 5. Grader call (as submitted on 10 Oct 2026, 14:29 PT)
+new_markdown_cell("""## 5. Post-event check against the exact value (computed AFTER judging, never used for any decision)
+
+At 15 qubits the noiseless value is a few seconds of statevector simulation. During the event we never computed it and never
+compared against it. We compute it here only to show where the bias in each run came from."""),
+new_code_cell('''from qiskit.quantum_info import Statevector
+exact = float(Statevector(circuit).expectation_value(observable).real)
+print(f"exact noiseless <Z6 Z7> = {exact:.6f}   (statevector, computed after the event)\n")
+rows = [("run 1 edge SLC (6 min after noise model)", v[0], e[0]),
+        ("run 2 edge SLC (18 min after noise model)", v[1], e[1]),
+        ("submitted inverse-variance mean", mean, err)]
+for name, val, er in rows:
+    print(f"{name:44s} {val:.4f} +/- {er:.4f}   |error| = {abs(val - exact):.4f}")
+print("\nRun 1 alone was within 0.0015 of the exact value. The 15-minute staleness gate would have excluded run 2.")'''),
+new_markdown_cell("""## 6. Grader call (as submitted on 10 Oct 2026, 14:29 PT)
 
 ```python
 from qc_grader.challenges.fallfest_2026.noise_buster import check_result
 check_result(float(mean))   # -> 51.8
 ```
 
-## 6. Honest findings
+## 7. Honest findings
 
 - The submitted error (0.0165) is 3.5× the statistical error (0.0046), so the limit is **bias, not shot noise**. Run 2 with 4× the shots did not help.
 - The raw value drifted from 0.545 (14:18) to 0.571 (14:30), over 5σ, while run 2 reused the 14:12 noise model. **Noise models go stale in about 15 minutes on this device.**
 - A fresh model-plus-execute attempt was submitted at 15:32 with the submission rule and a 15-minute staleness gate written first. The job sat in a queue that grew from 8 to 92 pending jobs and never ran; it was cancelled at the 16:40 cutoff and nothing new was submitted. **Queue delay is itself a source of mitigation bias.**
-- Post-event check against the exact statevector (never used for any decision during the event): run 1 alone, 6 minutes after its model, was within 0.0015 of the truth. The staleness gate would have won.
+- Section 5 shows the post-event comparison: run 1 alone, 6 minutes after its model, was within 0.0015 of the exact value. The staleness gate would have won.
 """),
 ]
 
