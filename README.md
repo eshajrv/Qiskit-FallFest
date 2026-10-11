@@ -5,6 +5,7 @@ Estimate <Z6 Z7> of a 15-qubit Ising Trotter circuit on ibm_kingston with error 
 Final answer **0.6788 ± 0.0046, grader score 51.8**, using shaded lightcones (SLC) on top of PEC
 with a shot-budget rule for the bias tolerance, TREX readout correction and edge post-selection.
 
+- **`Noise_Busters.ipynb` the submitted notebook**: pipeline cells plus reproduction from job IDs (`build_notebook.py` rebuilds and, with `IBM_QUANTUM_TOKEN` set, executes it)
 - `nb_pipeline.py` the five-stage pipeline (prepare, learn_noise, select_errors, run_executor, postprocess)
 - `reproduce.py` recomputes the submitted value from the finished job IDs, no QPU time needed; output in `reproduce.log`
 - `next_run.py` driver for a fresh noise model + executor run (`python next_run.py fresh`, `--dry-run` to only estimate cost)
